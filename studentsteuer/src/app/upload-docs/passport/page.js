@@ -1,10 +1,19 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, Suspense  } from "react";
 import { useSearchParams } from "next/navigation";
 import SidebarMenu from "../../components/SidebarMenu";
 import { useRouter } from "next/navigation";
 
-export default function Passport() {
+
+export default function Passport(){
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <PassportInner />
+      </Suspense>
+    );
+  
+}
+function PassportInner() {
   const router = useRouter();
 
   const searchParams = useSearchParams();

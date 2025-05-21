@@ -1,10 +1,18 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import SidebarMenu from "../../components/SidebarMenu";
 import { useRouter } from "next/navigation";
 
-export default function Revenue() {
+export default function Revenue(){
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <RevenueInner />
+      </Suspense>
+    );
+  
+}
+function RevenueInner() {
   const searchParams = useSearchParams();
   const selectedYear = searchParams.get("year") || "----";
   const router = useRouter();

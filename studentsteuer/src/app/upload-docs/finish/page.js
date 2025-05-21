@@ -1,11 +1,17 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,Suspense  } from "react";
 import { useSearchParams } from "next/navigation";
 import SidebarMenu from "../../components/SidebarMenu";
 import { useRouter } from "next/navigation";
 
-
-const UserAgreementPage = () => {
+export default function UserAgreementPage(){
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <UserAgreementPageInner />
+      </Suspense>
+    );
+}
+function UserAgreementPageInner() {
    const searchParams = useSearchParams();
      const selectedYear = searchParams.get("year") || "----";
     
@@ -109,5 +115,3 @@ const router = useRouter();
        </div>
      );
 };
-
-export default UserAgreementPage;

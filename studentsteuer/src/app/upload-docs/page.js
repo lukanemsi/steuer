@@ -1,10 +1,17 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,Suspense  } from "react";
 import { useSearchParams } from "next/navigation";
 import SidebarMenu from "../components/SidebarMenu";
 import { useRouter } from "next/navigation";
 
-export default function UploadDocsPage() {
+export default function UploadDocsPage(){
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <UploadDocsPageInner />
+    </Suspense>
+  );
+}
+function UploadDocsPageInner() {
   const searchParams = useSearchParams();
   const selectedYear = searchParams.get("year") || "----";
   const router = useRouter();

@@ -1,10 +1,18 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import SidebarMenu from "../../components/SidebarMenu";
 import { useRouter } from "next/navigation";
 
-export default function Bank() {
+export default function Bank(){
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <BankInner />
+      </Suspense>
+    );
+}
+
+function BankInner() {
   const router = useRouter();
   
   const searchParams = useSearchParams();
