@@ -16,7 +16,7 @@ function UploadDocsPageInner() {
   const selectedYear = searchParams.get("year") || "----";
   const router = useRouter();
 
-  const [selectedMenuIndex, setSelectedMenuIndex] = useState(0);
+  const [selectedMenuIndex, setSelectedMenuIndex] = useState(4);
   const [uploadedFile, setUploadedFile] = useState(null);
   const fileInputRef = useRef(null);
 
@@ -58,21 +58,12 @@ function UploadDocsPageInner() {
           <span className="relative">StudentSteuer.ge</span>
         </h1>
 
-          <div className="bg-white p-4 rounded-lg shadow text-sm font-medium mb-6 hidden sm:block">
-            <p>Tax Year: <span className="font-semibold">{selectedYear}</span></p>
-          </div>
-
           <SidebarMenu
             selectedIndex={selectedMenuIndex}
             onSelect={setSelectedMenuIndex}
           />
         </div>
 
-    
-        <footer className="hidden sm:block mt-8 bg-primary-text px-4 py-2 rounded-lg shadow-md text-center">
-        <p className="text-sm">+995 557 15 42 66</p>
-        <p className="text-sm">studentsteuer@gmail.com</p>
-      </footer>
       </aside>
 
       {/* Main Content */}
@@ -122,7 +113,7 @@ function UploadDocsPageInner() {
   </div>
   <div className="w-full max-w-md flex justify-start mt-6">
     <button
-      onClick={() => router.push(`/upload-docs/passport?year=${selectedYear}`)}
+      onClick={() => router.push(`/upload-docs/pay?year=${selectedYear}`)}
       className="bg-primary-text text-black px-8 py-2 rounded-lg shadow font-semibold transition-all duration-200 hover:bg-opacity-80 hover:scale-105"
     >
       შემდეგი

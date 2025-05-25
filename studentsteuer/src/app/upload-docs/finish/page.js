@@ -57,10 +57,7 @@ const router = useRouter();
           <span className="absolute top-1 sm:top-2 left-1 sm:left-2 w-[95%] sm:w-[90%] h-[75%] sm:h-[80%] bg-primary-text rounded-lg -rotate-[5deg]"></span>
           <span className="relative">StudentSteuer.ge</span>
         </h1>
-   
-             <div className="bg-white p-4 rounded-lg shadow text-sm font-medium mb-6">
-               <p>Tax Year: <span className="font-semibold">{selectedYear}</span></p>
-             </div>
+
    
              <SidebarMenu
                selectedIndex={selectedMenuIndex}
@@ -68,10 +65,6 @@ const router = useRouter();
              />
            </div>
    
-           <div className="bg-primary-text text-black mt-6 p-4 rounded-lg text-sm text-center shadow">
-             <p>+995 557 15 42 66</p>
-             <p>studentsteuer@gmail.com</p>
-           </div>
          </aside>
    
          {/* Main Content */}

@@ -34,11 +34,11 @@ export default function Home() {
           <div className="hidden sm:flex gap-10">
             <div 
               className="font-bold bg-primary-text text-black px-4 py-2 rounded-lg cursor-pointer transition-all duration-300 hover:bg-opacity-80 hover:scale-105"
-              onClick={() => router.push("/aboutus")}>
+              onClick={() => router.push("/upload-docs/about")}>
               About Us
             </div>
           </div>
-          <button className="text-black shadow-md rounded-lg p-6 w-full max-w-md mt-10 bg-primary"
+          <button className="text-black shadow-md rounded-lg p-6 w-full max-w-md mt-10 bg-primary cursor-pointer"
           onClick={() => router.push("/steuer-year")}
           >
             დაიბრუნე შთოიერი 

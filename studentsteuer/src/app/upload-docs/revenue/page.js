@@ -57,9 +57,7 @@ function RevenueInner() {
           <span className="absolute top-1 sm:top-2 left-1 sm:left-2 w-[95%] sm:w-[90%] h-[75%] sm:h-[80%] bg-primary-text rounded-lg -rotate-[5deg]"></span>
           <span className="relative">StudentSteuer.ge</span>
         </h1>
-        <div className="bg-white p-4 rounded-lg shadow text-sm font-medium mb-6 hidden sm:block">
-            <p>Tax Year: <span className="font-semibold">{selectedYear}</span></p>
-          </div>
+
 
           <SidebarMenu
             selectedIndex={selectedMenuIndex}
@@ -67,10 +65,6 @@ function RevenueInner() {
           />
         </div>
 
-        <footer className="hidden sm:block mt-8 bg-primary-text px-4 py-2 rounded-lg shadow-md text-center">
-        <p className="text-sm">+995 557 15 42 66</p>
-        <p className="text-sm">studentsteuer@gmail.com</p>
-      </footer>
       </aside>
 
       <main className="flex-1 bg-secondary p-8 flex flex-col items-center justify-start">
@@ -117,7 +111,7 @@ function RevenueInner() {
   </div>
         <div className="w-full max-w-md flex justify-start mt-6">
           <button
-            onClick={() => router.push(`/upload-docs/passport?year=${selectedYear}`)}
+            onClick={() => router.push(`/upload-docs/?year=${selectedYear}`)}
             className="bg-primary-text text-black px-8 py-2 rounded-lg shadow font-semibold transition-all duration-200 hover:bg-opacity-80 hover:scale-105"
           >
             შემდეგი

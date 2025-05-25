@@ -31,8 +31,8 @@ export default function YearSelectionPage() {
           <span className="relative">StudentSteuer.ge</span>
         </h1>
         <div className="hidden sm:flex gap-4 ">
-          <button className=" bg-primary-text px-4 py-2 rounded-lg font-semibold shadow-md "
-           onClick={() => router.push("/aboutus")}
+          <button className="cursor-pointer bg-primary-text px-4 py-2 rounded-lg font-semibold shadow-md "
+           onClick={() => router.push("/upload-docs/about")}
           >
             About us
           </button>
@@ -48,11 +48,12 @@ export default function YearSelectionPage() {
       </div>
 {/* Year Selection */}
 {/* Year Selection */}
-<div className="flex flex-wrap gap-4 mt-6 justify-center">
+<div className="flex flex-wrap gap-4 mt-6 justify-center ">
   {years.map((year) => (
     <div
       key={year}
       className={`
+        
         flex w-full sm:w-[48%] md:w-16 md:h-16
         items-center justify-between border-2 shadow-md rounded-lg transition-all
         ${selectedYear === year ? "bg-primary-text border-lime-500" : "bg-white border-gray-300"}
@@ -62,24 +63,24 @@ export default function YearSelectionPage() {
     >
       <button
         onClick={() => setSelectedYear(year)}
-        className="text-lg font-semibold"
+        className="text-lg font-semibold cursor-pointer"
       >
         {year}
       </button>
 
       {/* Show this only on mobile */}
       <button 
-        onClick={() => router.push(`/upload-docs?year=${year}`)}
+        onClick={() => router.push(`/upload-docs/info?year=${year}`)}
         className="text-sm bg-secondary text-white px-3 py-1 rounded-lg md:hidden "
       >
-        <span className="text-black">შემდეგი</span>
+        <span className="text-black cursor-pointer">შემდეგი</span>
       </button>
     </div>
   ))}
 
   {/* "+" Button to Add New Year */}
   <button
-    className="w-full sm:w-[48%] md:w-16 md:h-16 flex items-center justify-center rounded-lg border-2 border-gray-300 shadow-md text-lg font-semibold bg-white"
+    className="cursor-pointer w-full sm:w-[48%] md:w-16 md:h-16 flex items-center justify-center rounded-lg border-2 border-gray-300 shadow-md text-lg font-semibold bg-white"
     onClick={addNewYear}
   >
     +
@@ -88,8 +89,8 @@ export default function YearSelectionPage() {
 
 
       {/* Next Button */}
-      <button className="hidden sm:block mt-6 bg-primary-text px-6 py-3 rounded-lg font-semibold shadow-md"
-        onClick={() => router.push(`/upload-docs?year=${selectedYear}`)}
+      <button className="cursor-pointer hidden sm:block mt-6 bg-primary-text px-6 py-3 rounded-lg font-semibold shadow-md"
+        onClick={() => router.push(`/upload-docs/info?year=${selectedYear}`)}
       >
         შემდეგი
       </button>

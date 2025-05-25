@@ -10,34 +10,8 @@ function InfoInner() {
   const selectedYear = searchParams.get("year") || "----";
   const router = useRouter();
 
-  const [selectedMenuIndex, setSelectedMenuIndex] = useState(4);
-  const [uploadedFile, setUploadedFile] = useState(null);
-  const fileInputRef = useRef(null);
+  const [selectedMenuIndex, setSelectedMenuIndex] = useState(0);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setUploadedFile(file);
-      console.log("Selected file:", file.name);
-    }
-  };
-
-  const handleUploadClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleDrop = (event) => {
-    event.preventDefault();
-    const file = event.dataTransfer.files?.[0];
-    if (file) {
-      setUploadedFile(file);
-      console.log("Dropped file:", file.name);
-    }
-  };
-
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-primary text-black">
@@ -52,42 +26,81 @@ function InfoInner() {
             <span className="relative">StudentSteuer.ge</span>
           </h1>
 
-          <div className="bg-white p-4 rounded-lg shadow text-sm font-medium mb-6 hidden sm:block">
-            <p>
-              Tax Year: <span className="font-semibold">{selectedYear}</span>
-            </p>
-          </div>
 
           <SidebarMenu
             selectedIndex={selectedMenuIndex}
             onSelect={setSelectedMenuIndex}
           />
         </div>
-
-        <footer className="hidden sm:block mt-8 bg-primary-text px-4 py-2 rounded-lg shadow-md text-center">
-          <p className="text-sm">+995 557 15 42 66</p>
-          <p className="text-sm">studentsteuer@gmail.com</p>
-        </footer>
       </aside>
 
       {/* Main Content */}
       <main className="flex-1 bg-secondary px-4 py-6 sm:px-12 sm:py-10 flex flex-col items-center justify-start">
-        <h2 className="text-xl sm:text-3xl font-bold mb-2 text-center">
-          თქვენი პერსონალური მონაცემები
-        </h2>
-        <p className="text-center max-w-md text-sm sm:text-base text-gray-700 mb-6">
-          ატვირთეთ <span className="text-green-700 font-semibold">payslip</span>, payslip არის დოკუმენტი, რომელსაც დამსაქმებელი სამუშაო კონტრაქტის დასრულების შემდეგ გაძლევთ თქვენ.
-        </p>
+  <h2 className="text-xl sm:text-3xl font-bold mb-2 text-center">
+    თქვენი პერსონალური მონაცემები
+  </h2>
 
-        <div className="w-full max-w-md flex justify-start mt-6">
-          <button
-            onClick={() => router.push(`/upload-docs/passport?year=${selectedYear}`)}
-            className="bg-primary-text text-black px-8 py-2 rounded-lg shadow font-semibold transition-all duration-200 hover:bg-opacity-80 hover:scale-105"
-          >
-            შემდეგი
-          </button>
-        </div>
-      </main>
+      <form className="w-full max-w-md mt-8 space-y-4">
+      <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
+        <label className="font-medium w-full sm:w-40">1. Name</label>
+        <input
+          type="text"
+          className="w-full bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+          placeholder="Enter your name"
+        />
+      </div>
+
+      <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
+        <label className="font-medium w-full sm:w-40">2. Lastname</label>
+        <input
+          type="text"
+          className="w-full bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+          placeholder="Enter your lastname"
+        />
+      </div>
+
+      <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
+        <label className="font-medium w-full sm:w-40">3. Mobile Number</label>
+        <input
+          type="tel"
+          className="w-full bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+          placeholder="Enter your mobile number"
+        />
+      </div>
+
+      <div className="flex flex-col sm:flex-row sm:items-start space-y-1 sm:space-y-0 sm:space-x-4">
+        <label className="font-medium w-full sm:w-40">
+          4. Country, City, home address, home number
+        </label>
+        <textarea
+          className="w-full bg-white border border-gray-300 rounded-md px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+          placeholder="Enter your address"
+          rows={2}
+        />
+      </div>
+
+      <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
+        <label className="font-medium w-full sm:w-40">5. Gmail</label>
+        <input
+          type="email"
+          className="w-full bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+          placeholder="Enter your Gmail"
+        />
+      </div>
+    </form>
+
+
+  <div className="w-full max-w-md flex justify-start mt-6">
+    <button
+      onClick={() => router.push(`/upload-docs/passport?year=${selectedYear}`)}
+      className="bg-primary-text text-black px-8 py-2 rounded-lg shadow font-semibold transition-all duration-200 hover:bg-opacity-80 hover:scale-105"
+    >
+      შემდეგი
+    </button>
+  </div>
+</main>
+
+
     </div>
   );
 }

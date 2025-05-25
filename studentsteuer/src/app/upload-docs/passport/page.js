@@ -61,20 +61,12 @@ function PassportInner() {
             <span className="relative">StudentSteuer.ge</span>
           </h1>
 
-          <div className="bg-white p-4 rounded-lg shadow text-sm font-medium mb-6 hidden sm:block">
-            <p>Tax Year: <span className="font-semibold">{selectedYear}</span></p>
-          </div>
-
           <SidebarMenu
             selectedIndex={selectedMenuIndex}
             onSelect={setSelectedMenuIndex}
           />
         </div>
 
-        <footer className="hidden sm:block mt-8 bg-primary-text px-4 py-2 rounded-lg shadow-md text-center">
-          <p className="text-sm">+995 557 15 42 66</p>
-          <p className="text-sm">studentsteuer@gmail.com</p>
-        </footer>
       </aside>
 
       {/* Main Content */}
