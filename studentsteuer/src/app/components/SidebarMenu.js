@@ -9,8 +9,8 @@ const menuItems = [
   { label: "Bank Account Statement", path: "/upload-docs/bank" },
   { label: "Revenue Service Statement", path: "/upload-docs/revenue" },
   { label: "Lohnsteuerbescheinigung", path: "/upload-docs" },
-  { label: "Pay", path: "/upload-docs/pay" },
   { label: "About Us", path: "/upload-docs/about" },
+  { label: "Pay", path: "/upload-docs/pay" },
 ];
 
 export default function SidebarMenu({ selectedIndex, onSelect }) {
@@ -49,19 +49,28 @@ export default function SidebarMenu({ selectedIndex, onSelect }) {
 
       {/* Desktop: show all */}
       <div className="hidden md:flex flex-col items-center">
-        {menuItems.map((item, index) => (
-          <button
-            key={index}
-            onClick={() => handleClick(index, item.path)}
-            className={`cursor-pointer m-1 text-center w-70 px-3 py-2 rounded transition ${
-              selectedIndex === index
-                ? "bg-[#a8c087] text-white"
-                : "bg-white text-black hover:bg-gray-200"
-            }`}
-          >
-            {index + 1}. {item.label}
-          </button>
-        ))}
+{menuItems.map((item, index) => {
+  const isDisabled = item.label === "Pay";
+
+  return (
+    <button
+      key={index}
+      onClick={() => {
+        if (!isDisabled) handleClick(index, item.path);
+      }}
+      disabled={isDisabled}
+      className={`m-1 text-center w-70 px-3 py-2 rounded transition
+        ${isDisabled ? "bg-gray-300 text-gray-500 cursor-not-allowed" :
+          selectedIndex === index
+            ? "bg-[#a8c087] text-white"
+            : "bg-white text-black hover:bg-gray-200 cursor-pointer"
+        }`}
+    >
+      {index + 1}. {item.label}
+    </button>
+  );
+})}
+
       </div>
 
       <footer className="w-70 hidden sm:block mt-8 bg-primary-text px-4 py-2 rounded-lg shadow-md text-center">

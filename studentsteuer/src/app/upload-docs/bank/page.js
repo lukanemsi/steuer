@@ -1,50 +1,34 @@
 "use client";
-import React, { useState, useRef,Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import SidebarMenu from "../../components/SidebarMenu";
 import { useRouter } from "next/navigation";
+import SidebarMenu from "../../components/SidebarMenu";
+import FileUploadManager from "../FileUploadManager";
 
-export default function Bank(){
-    return (
-      <Suspense fallback={<div>Loading...</div>}>
-        <BankInner />
-      </Suspense>
-    );
+export default function Bank() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BankInner />
+    </Suspense>
+  );
 }
 
 function BankInner() {
   const router = useRouter();
-  
   const searchParams = useSearchParams();
   const selectedYear = searchParams.get("year") || "----";
 
   const [selectedMenuIndex, setSelectedMenuIndex] = useState(2);
   const [uploadedFile, setUploadedFile] = useState(null);
-  const fileInputRef = useRef(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleFileChange = (event) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setUploadedFile(file);
-      console.log("Selected file:", file.name);
+    const handleNextClick = () => {
+    if (!uploadedFile) {
+      setErrorMessage("გთხოვთ, ატვირთეთ ფაილი");
+    } else {
+      setErrorMessage("");
+      router.push(`/upload-docs/revenue?year=${selectedYear}`);
     }
-  };
-
-  const handleUploadClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleDrop = (event) => {
-    event.preventDefault();
-    const file = event.dataTransfer.files?.[0];
-    if (file) {
-      setUploadedFile(file);
-      console.log("Dropped file:", file.name);
-    }
-  };
-
-  const handleDragOver = (event) => {
-    event.preventDefault();
   };
 
   return (
@@ -74,42 +58,20 @@ function BankInner() {
           გახსენით მობაილ ბანკი, იმ ბარათს დააკლიკეთ, რომელზეც გსურთ თანხა ჩაგერიცხოთ და მის ქვემოთ აირჩიეთ “რეკვიზიტები”. გადმოწერეთ ფაილი და შემდეგ ატვირთეთ აქ.
         </p>
 
-        <div
-          className="w-full max-w-md bg-white p-8 sm:p-30 rounded-xl border-2 border-dashed border-gray-400 text-center shadow-lg transition-all duration-300 hover:border-gray-600"
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-        >
-          <input
-            ref={fileInputRef}
-            type="file"
-            className="hidden"
-            onChange={handleFileChange}
-          />
+        <FileUploadManager onFilesReady={setUploadedFile} />
 
-          <button
-            onClick={handleUploadClick}
-            className="bg-primary-text text-black px-6 py-2 rounded-lg shadow font-semibold transition-all duration-200 hover:bg-opacity-80 hover:scale-105"
-          >
-            ატვირთე ფაილი
-          </button>
-
-          <p className="text-sm text-gray-500 mt-2">ან გადმოიტანე ფაილი აქ</p>
-
-          {uploadedFile && (
-            <p className="mt-4 text-sm text-green-700">
-              ატვირთული ფაილი: <span className="font-semibold">{uploadedFile.name}</span>
-            </p>
-          )}
-        </div>
-
+  
         <div className="w-full max-w-md flex justify-start mt-6">
           <button
-            onClick={() => router.push(`/upload-docs/revenue?year=${selectedYear}`)}
+            onClick={handleNextClick}
             className="bg-primary-text text-black px-8 py-2 rounded-lg shadow font-semibold transition-all duration-200 hover:bg-opacity-80 hover:scale-105"
           >
             შემდეგი
           </button>
         </div>
+           {errorMessage && (
+          <div className="text-red-600 font-semibold mt-4">{errorMessage}</div>
+        )}
       </main>
     </div>
   );

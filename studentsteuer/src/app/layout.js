@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { FileUploadProvider } from "./contexts/FileUploadContext";
+import { FormDataProvider } from "./contexts/FormDataContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +24,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+      <FormDataProvider>
+        <FileUploadProvider>
         {children}
+        </FileUploadProvider>
+      </FormDataProvider>
+
       </body>
     </html>
   );

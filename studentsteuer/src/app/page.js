@@ -33,16 +33,27 @@ export default function Home() {
         <div className="bg-secondary flex-1 flex flex-col justify-around items-center p-6">
           <div className="hidden sm:flex gap-10">
             <div 
-              className="font-bold bg-primary-text text-black px-4 py-2 rounded-lg cursor-pointer transition-all duration-300 hover:bg-opacity-80 hover:scale-105"
+      className="bg-primary-text text-black font-semibold px-6 py-3 rounded-xl shadow transition-all duration-300 hover:bg-opacity-90 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-text"
               onClick={() => router.push("/upload-docs/about")}>
               About Us
             </div>
           </div>
-          <button className="text-black shadow-md rounded-lg p-6 w-full max-w-md mt-10 bg-primary cursor-pointer"
-          onClick={() => router.push("/steuer-year")}
-          >
-            დაიბრუნე შთოიერი 
-          </button>
+<button
+  onClick={() => router.push("/steuer-year")}
+  className="bg-primary text-black font-semibold text-lg px-8 py-4 rounded-xl shadow-md w-full max-w-md flex items-center justify-center gap-3 transition-all duration-300 hover:bg-opacity-90 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary"
+>
+  დაიბრუნე შთოიერი
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth="2"
+    stroke="currentColor"
+    className="w-6 h-6"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+  </svg>
+</button>
         </div>
       </div>
   );

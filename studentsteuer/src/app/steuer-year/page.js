@@ -40,12 +40,12 @@ export default function YearSelectionPage() {
       </header>
 
       {/* Title */}
-      <div className="text-center mt-10 text-white mt-5">
-        <h2 className="text-2xl font-bold">აირჩიეთ წელი</h2>
-        <p className="text-sm mt-2">
-        შთოიერის დასაბრუნებლად აირჩიე ის წელი, რომლის განმავლობაშიც გერმანიაში იყავი დასაქმებული.
-        </p>
-      </div>
+<div className="text-center mt-10 text-white">
+  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">აირჩიეთ წელი</h2>
+  <p className="text-sm sm:text-base mt-2">
+    შთოიერის დასაბრუნებლად აირჩიე ის წელი, რომლის განმავლობაშიც გერმანიაში იყავი დასაქმებული.
+  </p>
+</div>
 {/* Year Selection */}
 {/* Year Selection */}
 <div className="flex flex-wrap gap-4 mt-6 justify-center ">

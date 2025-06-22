@@ -3,11 +3,21 @@
 import React, { useState, useRef, Suspense } from "react";
 import SidebarMenu from "../../components/SidebarMenu";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 function AboutInner() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const [isChecked, setIsChecked] = useState(false);
 
-  const [selectedMenuIndex, setSelectedMenuIndex] = useState(6);
+  const [selectedMenuIndex, setSelectedMenuIndex] = useState(5);
+  const selectedYear = searchParams.get("year") || "----";
+
+  const handleNextClick = () => {
+
+        router.push(`/upload-docs/pay?year=${selectedYear}`);
+    }
+  
 
 
   return (
@@ -49,13 +59,13 @@ function AboutInner() {
           <p>მთავარ ორ სერვისს გთავაზობთ:</p>
           <ol className="list-decimal list-inside space-y-2 ml-4">
             <li>
-              ფინალური გადახდის დაბრუნება (€49.99) – ერთჯერადი ტიპის ოპერაცია და ჩვენი სერვისით
+              ფინალური გადახდის დაბრუნება (€50.00) – ერთჯერადი ტიპის ოპერაცია და ჩვენი სერვისით
               მოგაწვდით მომზადებულ სახელს.
             </li>
             <li>
               პორტალის ატვირთვა ანტვერპ – ამ ეტაპზე არ ითხოვს დაბრუნებას. საბუღალტრო ფორმებს
               Finanzamt მიაწვდით იმავე სახელზე, რაც გამოყენებულია ჩვენს სისტემაში. ფასი
-              შეადგენს €49.99 + 49.99 ორ ეტაპად მომზადებისას.
+              შეადგენს €50.00 + 50.00 ორ ეტაპად მომზადებისას.
             </li>
           </ol>
 
@@ -66,13 +76,37 @@ function AboutInner() {
 
           <p>იხილეთ მომხმარებლის პროტოკოლი:</p>
 
-          <a
-            href="/docs/user-agreement.pdf"
-            target="_blank"
-            className="inline-block mt-2 px-4 py-2 bg-[#a8c087] text-white font-medium rounded shadow hover:bg-[#91aa6d] transition"
-          >
-            User Agreement PDF
-          </a>
+          <div className="flex flex-col items-start gap-4">
+      <a
+        href="/docs/user-agreement.pdf"
+        target="_blank"
+        className="inline-block px-4 py-2 bg-[#a8c087] text-white font-medium rounded shadow hover:bg-[#91aa6d] transition"
+      >
+        User Agreement PDF
+      </a>
+
+      <label className="flex items-center gap-2 text-sm text-gray-700">
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={(e) => setIsChecked(e.target.checked)}
+          className="accent-[#a8c087] w-4 h-4"
+        />
+        I've read and agree to the User Agreement
+      </label>
+
+      <button
+        onClick={handleNextClick}
+        disabled={!isChecked}
+        className={`px-8 py-2 rounded-lg shadow font-semibold transition-all duration-200 ${
+          isChecked
+            ? "bg-primary-text text-black hover:bg-opacity-80 hover:scale-105"
+            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+        }`}
+      >
+        შემდეგი
+      </button>
+    </div>
         </div>
     </main>
     </div>

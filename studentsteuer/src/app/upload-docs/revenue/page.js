@@ -3,6 +3,7 @@ import React, { useState, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import SidebarMenu from "../../components/SidebarMenu";
 import { useRouter } from "next/navigation";
+import FileUploadManager from "../FileUploadManager";
 
 export default function Revenue(){
     return (
@@ -19,32 +20,17 @@ function RevenueInner() {
 
   const [selectedMenuIndex, setSelectedMenuIndex] = useState(3);
   const [uploadedFile, setUploadedFile] = useState(null);
-  const fileInputRef = useRef(null);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setUploadedFile(file);
-      console.log("Selected file:", file.name);
-    }
-  };
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleUploadClick = () => {
-    fileInputRef.current?.click();
+  const handleNextClick = () => {
+    if (!uploadedFile) {
+      setErrorMessage("გთხოვთ, ატვირთეთ ფაილი.");
+    } else {
+      setErrorMessage(""); // Clear any previous errors
+    router.push(`/upload-docs/?year=${selectedYear}`)    
   };
-
-  const handleDrop = (event) => {
-    event.preventDefault();
-    const file = event.dataTransfer.files?.[0];
-    if (file) {
-      setUploadedFile(file);
-      console.log("Dropped file:", file.name);
-    }
-  };
-
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
+}
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-primary text-black">
@@ -73,50 +59,19 @@ function RevenueInner() {
         მიბრძანდით შემოსავლების სამსახურში ( Revenue Service ), უფასოდ მოითხოვეთ თქვენი წინა წლის შემოსავლების ცნობა ( 9 999 ლარს არ უნდა სცდებოდეს თქვენი შემოსავალი დოკუმენტში. თუ სცდება აუცილებელია შემცირებული ვარიანტის ამობეჭდვა). ამობეჭდილ ცნობას ქვედა მარჯვენა კუთხეში აქვს შტრიხკოდი, დაასკანერეთ და გადმოწერეთ PDF დოკუმენტი. შემდეგ კი ატვირთეთ აქ.
         </p>
 
-        <div
-    className="w-full max-w-md bg-white  p-8 sm:p-30  rounded-xl border-2 border-dashed border-gray-400 text-center shadow-lg transition-all duration-300 hover:border-gray-600"
-    onDrop={handleDrop}
-    onDragOver={handleDragOver}
-  >
-    <input
-      ref={fileInputRef}
-      type="file"
-      className="hidden"
-      onChange={handleFileChange}
-    />
-
-    {/* Upload button */}
-    <button
-      onClick={handleUploadClick}
-      className="bg-primary-text text-black px-6 py-2 rounded-lg shadow font-semibold transition-all duration-200 hover:bg-opacity-80 hover:scale-105"
-    >
-      ატვირთე ფაილი
-    </button>
-
-    {/* Text below the button */}
-    <div className="mt-2 sm:mt-0">
-      <p className="text-sm text-gray-500">
-        ან გადმოიტანე ფაილი აქ
-      </p>
-    </div>
-
-
-
-    {/* Uploaded file name */}
-    {uploadedFile && (
-      <p className="mt-4 text-sm text-green-700">
-        ატვირთული ფაილი: <span className="font-semibold">{uploadedFile.name}</span>
-      </p>
-    )}
-  </div>
+        <FileUploadManager onFilesReady={setUploadedFile} />
+       
         <div className="w-full max-w-md flex justify-start mt-6">
           <button
-            onClick={() => router.push(`/upload-docs/?year=${selectedYear}`)}
+            onClick={handleNextClick}
             className="bg-primary-text text-black px-8 py-2 rounded-lg shadow font-semibold transition-all duration-200 hover:bg-opacity-80 hover:scale-105"
           >
             შემდეგი
           </button>
         </div>
+            {errorMessage && (
+          <div className="text-red-600 font-semibold mt-4">{errorMessage}</div>
+        )}
       </main>
     </div>
   );
