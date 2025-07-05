@@ -136,7 +136,7 @@ function InfoInner() {
                   ? "border-red-500 focus:ring-red-500"
                   : "border-gray-300 focus:ring-primary"
               }`}
-              placeholder="Enter your PhoneNumber number"
+              placeholder="Enter your Phone number"
               value={formData.phoneNumber}
               onChange={handleChange}
             />

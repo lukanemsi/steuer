@@ -15,11 +15,11 @@ export default function Home() {
             <span className="relative">StudentSteuer.ge</span>
           </h1>
           <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">დააბრუნე შთოიერი <br /> მარტივად</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">დაიბრუნე შთოიერი <br /> მარტივად</h2>
             <p className="mt-4 text-lg sm:text-xl md:text-2xl">
               სტუდენტი ხარ და ზაფხულობით <br />
               გერმანიაში მუშაობ? StudentSteuer <br />
-              შთოიერის(გერმანული გადასახადის) <br />
+              შთოიერის (გერმანული გადასახადის) <br />
               დაბრუნებაში დაგეხმარება.
             </p>
           </div>
