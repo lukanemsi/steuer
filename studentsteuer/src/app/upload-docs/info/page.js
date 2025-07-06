@@ -125,7 +125,7 @@ function InfoInner() {
 
           <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
             <label className="font-medium w-full sm:w-40" htmlFor="phoneNumber">
-              3. Mobile PhoneNumber
+              3. Mobile Phone Number
             </label>
             <input
               id="phoneNumber"

@@ -63,7 +63,7 @@ async function validate() {
       {/* Main Content */}
     <main className="flex-1  bg-secondary px-4 py-6 sm:px-12 sm:py-10 flex flex-col items-center justify-start">
       <h2 className="text-xl sm:text-3xl font-bold mb-2 text-center">
-    ატვირთეთ დოკუმენტები
+    ატვირთეთ შთოიერი
   </h2>
   <p className="text-center max-w-md text-sm sm:text-base text-gray-700 mb-6">
     ატვირთეთ <span className="text-green-700 font-semibold">payslip</span>, payslip არის დოკუმენტი, რომელსაც დამსაქმებელი სამუშაო კონტრაქტის დასრულების შემდეგ გაძლევთ თქვენ.
