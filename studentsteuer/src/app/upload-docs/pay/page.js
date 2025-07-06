@@ -36,7 +36,7 @@ async function sendDataToServer() {
   });
 
   try {
-    const response = await fetch("http://localhost:8080/studentsteuer/files/upload", {
+    const response = await fetch("https://studentsteuer.ge/studentsteuer/files/upload", {
       method: "POST",
       body: formDataPayload,
     });
